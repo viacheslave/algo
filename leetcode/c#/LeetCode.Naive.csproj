@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Text" />
+    <Using Include="System.Linq" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Problems\P0193.sh" />
+    <None Remove="Problems\P0195.sh" />
+    <None Remove="Problems\_0175.sql" />
+    <None Remove="Problems\_0176.sql" />
+    <None Remove="Problems\_0177.sql" />
+    <None Remove="Problems\_0178.sql" />
+    <None Remove="Problems\_0181.sql" />
+    <None Remove="Problems\_0182.sql" />
+    <None Remove="Problems\_0183.sql" />
+    <None Remove="Problems\_0184.sql" />
+    <None Remove="Problems\_0197.sql" />
+    <None Remove="Problems\_0262.sql" />
+    <None Remove="Problems\_0595.sql" />
+    <None Remove="Problems\_0596.sql" />
+    <None Remove="Problems\_0620.sql" />
+    <None Remove="Problems\_0626.sql" />
+    <None Remove="Problems\_0627.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>

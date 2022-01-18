@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace LeetCode.Challenge.Y21
+{
+  /// <summary>
+  ///   https://leetcode.com/explore/challenge/card/march-leetcoding-challenge-2021/589/week-3-march-15th-march-21st/3678/
+  ///   
+  /// </summary>
+  internal class Mar20
+  {
+    public class UndergroundSystem
+    {
+      Dictionary<int, (string, int)> _map = new Dictionary<int, (string, int)>();
+      Dictionary<(string, string), List<int>> _stats = new Dictionary<(string, string), List<int>>();
+
+      public void CheckIn(int id, string stationName, int t)
+      {
+        _map[id] = (stationName, t);
+      }
+
+      public void CheckOut(int id, string stationName, int t)
+      {
+        var start = _map[id].Item1;
+
+        if (!_stats.ContainsKey((start, stationName)))
+          _stats[(start, stationName)] = new List<int>();
+
+        _stats[(start, stationName)].Add(t - _map[id].Item2);
+      }
+
+      public double GetAverageTime(string startStation, string endStation)
+      {
+        if (_stats.ContainsKey((startStation, endStation)))
+          return _stats[(startStation, endStation)].Average();
+
+        return 0;
+      }
+    }
+
+    /**
+     * Your UndergroundSystem object will be instantiated and called as such:
+     * UndergroundSystem obj = new UndergroundSystem();
+     * obj.CheckIn(id,stationName,t);
+     * obj.CheckOut(id,stationName,t);
+     * double param_3 = obj.GetAverageTime(startStation,endStation);
+     */
+  }
+}
