@@ -10,6 +10,8 @@ public class Main {
   public static void main(String[] arg) {
     Scanner scanner = new Scanner(System.in);
 
+    new Solution().solve(18);
+
     scanner.close();
   }
 
