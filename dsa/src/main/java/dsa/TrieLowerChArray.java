@@ -1,4 +1,4 @@
-package binarysearch.templates;
+package dsa;
 
 public class TrieLowerChArray {
   private final  TrieNode root = new TrieNode();

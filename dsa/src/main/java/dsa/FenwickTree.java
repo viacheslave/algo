@@ -1,8 +1,13 @@
-package binarysearch.templates;
+package dsa;
 
 public class FenwickTree {
   private final int[] tree;
 
+  /**
+   * Constructs new Fenwick Tree (binary indexed tree)
+   *
+   * @param arr source array
+   */
   public FenwickTree(int[] arr) {
     tree = new int[arr.length + 1];
 
@@ -20,6 +25,7 @@ public class FenwickTree {
 
   /**
    * Returns sum of elements [from, to]
+   *
    * @param from - start el (1-based)
    * @param to - end el (1-based)
    * @return range sum
@@ -32,6 +38,7 @@ public class FenwickTree {
 
   /**
    * Add a value to an item at index
+   *
    * @param index - el index
    * @param value - el extra value
    */
@@ -45,6 +52,7 @@ public class FenwickTree {
 
   /**
    * Updates a value at index
+   *
    * @param index - el index
    * @param value - el extra value
    */
