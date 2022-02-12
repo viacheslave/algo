@@ -57,7 +57,7 @@ public class FenwickTree {
    * @param value - el extra value
    */
   public void set(int index, int value) {
-    var diff = value - tree[index];
+    var diff = value - sum(index, index);
     add(index, diff);
   }
 
