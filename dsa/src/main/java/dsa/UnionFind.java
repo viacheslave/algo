@@ -1,23 +1,23 @@
 package dsa;
 
 public class UnionFind {
-  private final int[] _parent;
-  private final int[] _rank;
+  private final int[] parent;
+  private final int[] rank;
 
   public UnionFind(int n) {
-    _parent = new int[n];
-    _rank = new int[n];
+    parent = new int[n];
+    rank = new int[n];
 
     for (int i = 0; i < n; i++) {
-      _parent[i] = i;
-      _rank[i] = 0;
+      parent[i] = i;
+      rank[i] = 0;
     }
   }
 
   public int find(int p) {
-    while (p != _parent[p]) {
-      _parent[p] = _parent[_parent[p]];
-      p = _parent[p];
+    while (p != parent[p]) {
+      parent[p] = parent[parent[p]];
+      p = parent[p];
     }
 
     return p;
@@ -30,15 +30,15 @@ public class UnionFind {
     if (rootP == rootQ)
       return;
 
-    if (_rank[rootP] < _rank[rootQ]) {
-      _parent[rootP] = rootQ;
+    if (rank[rootP] < rank[rootQ]) {
+      parent[rootP] = rootQ;
     }
-    else if (_rank[rootP] > _rank[rootQ]) {
-      _parent[rootQ] = rootP;
+    else if (rank[rootP] > rank[rootQ]) {
+      parent[rootQ] = rootP;
     }
     else {
-      _parent[rootQ] = rootP;
-      _rank[rootP]++;
+      parent[rootQ] = rootP;
+      rank[rootP]++;
     }
   }
 }
