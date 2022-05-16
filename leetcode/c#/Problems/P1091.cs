@@ -2,7 +2,7 @@ namespace LeetCode.Naive.Problems;
 
 /// <summary>
 ///    Problem: https://leetcode.com/problems/shortest-path-in-binary-matrix/
-///    Submission: https://leetcode.com/contest/weekly-contest-141/submissions/detail/236207067/
+///    Submission: https://leetcode.com/submissions/detail/700575751/
 /// </summary>
 internal class P1091
 {
@@ -37,13 +37,17 @@ internal class P1091
           continue;
         }
 
-        q.Enqueue((el.Item1 + 1, el.Item2 - 1, el.Item3 + 1));
-        q.Enqueue((el.Item1 + 1, el.Item2 + 0, el.Item3 + 1));
+        // diagonal
         q.Enqueue((el.Item1 + 1, el.Item2 + 1, el.Item3 + 1));
-        q.Enqueue((el.Item1 + 0, el.Item2 - 1, el.Item3 + 1));
-        q.Enqueue((el.Item1 + 0, el.Item2 + 1, el.Item3 + 1));
-        q.Enqueue((el.Item1 - 1, el.Item2 + 0, el.Item3 + 1));
         q.Enqueue((el.Item1 - 1, el.Item2 + 1, el.Item3 + 1));
+        q.Enqueue((el.Item1 + 1, el.Item2 - 1, el.Item3 + 1));
+        q.Enqueue((el.Item1 - 1, el.Item2 - 1, el.Item3 + 1));
+
+        // 4-d
+        q.Enqueue((el.Item1 + 1, el.Item2 + 0, el.Item3 + 1));
+        q.Enqueue((el.Item1 - 1, el.Item2 + 0, el.Item3 + 1));
+        q.Enqueue((el.Item1 + 0, el.Item2 + 1, el.Item3 + 1));
+        q.Enqueue((el.Item1 + 0, el.Item2 - 1, el.Item3 + 1));
       }
 
       return min == int.MaxValue ? -1 : min;
