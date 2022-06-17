@@ -2,82 +2,68 @@ namespace LeetCode.Naive.Problems;
 
 /// <summary>
 ///    Problem: https://leetcode.com/problems/longest-string-chain/
-///    Submission: https://leetcode.com/submissions/detail/243282116/
+///    Submission: https://leetcode.com/submissions/detail/722834159/
 /// </summary>
 internal class P1048
 {
   public class Solution
   {
-    int max = 0;
-
     public int LongestStrChain(string[] words)
     {
-      var maps = words.GroupBy(w => w.Length).ToDictionary(w => w.Key, w => new HashSet<string>(w));
+      var dp = new int[words.Length];
+      Array.Fill(dp, 1);
 
-      foreach (var word in words)
+      var wordList = words.OrderByDescending(w => w.Length).ToList();
+
+      var maps = wordList
+        .Select((word, index) => (word, index))
+        .GroupBy(g => g.word.Length)
+        .ToDictionary(g => g.Key, g => g.OrderBy(i => i.index).ToList());
+
+      for (var i = 0; i < wordList.Count; i++)
       {
-        Traverse(maps, word, 1);
-      }
+        var word = wordList[i];
 
-      return max;
-    }
-
-    private void Traverse(Dictionary<int, HashSet<string>> maps, string word, int length)
-    {
-      var candidates = GetCandidates(maps, word);
-
-      if (candidates.Count == 0)
-      {
-        max = Math.Max(max, length);
-        return;
-      }
-
-      foreach (var candidate in candidates)
-      {
-        Traverse(maps, candidate, length + 1);
-      }
-    }
-
-    private List<string> GetCandidates(Dictionary<int, HashSet<string>> maps, string word)
-    {
-      var result = new List<string>();
-
-      if (!maps.ContainsKey(word.Length + 1))
-        return result;
-
-      foreach (var candidate in maps[word.Length + 1])
-      {
-        var hit = false;
-        var fits = true;
-
-        for (int i = 0; i < word.Length; i++)
+        var left = maps.GetValueOrDefault(word.Length + 1);
+        if (left is not null)
         {
-          if (!hit && word[i] != candidate[i])
+          foreach (var l in left)
           {
-            hit = true;
-            i--;
-            continue;
+            if (Matches(l.word, word))
+            {
+              dp[i] = Math.Max(dp[i], dp[l.index] + 1);
+            }
           }
+        }
+      }
 
-          if (hit)
-          {
-            if (word[i] == candidate[i + 1])
-              continue;
-          }
-          else
-          {
-            if (word[i] == candidate[i])
-              continue;
-          }
+      return dp.Max();
+    }
 
-          fits = false;
-          break;
+    private bool Matches(string left, string word)
+    {
+      var l = 0;
+      var hit = false;
+
+      for (var w = 0; w < word.Length; w++)
+      {
+        if (word[w] == left[l])
+        {
+          l++;
+          continue;
         }
 
-        if (fits)
-          result.Add(candidate);
+        if (hit)
+        {
+          return false;
+        }
+
+        w--;
+        l++;
+        hit = true;
       }
-      return result;
+
+      return true;
     }
   }
 }

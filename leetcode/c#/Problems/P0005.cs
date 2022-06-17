@@ -16,7 +16,7 @@ internal class P0005
       if (s.Length == 1)
         return s;
 
-      var sub = s[0].ToString();
+      ReadOnlySpan<char> sub = s[0..1];
 
       for (var i = 0; i < s.Length; i++)
       {
@@ -26,7 +26,9 @@ internal class P0005
         while (left >= 0 && right < s.Length && s[left] == s[right])
         {
           if (right - left + 1 > sub.Length)
-            sub = s.Substring(left, right - left + 1);
+          {
+            sub = s[left..(right + 1)];
+          }
 
           left--;
           right++;
@@ -38,14 +40,16 @@ internal class P0005
         while (left >= 0 && right < s.Length && s[left] == s[right])
         {
           if (right - left + 1 > sub.Length)
-            sub = s.Substring(left, right - left + 1);
+          {
+            sub = s[left..(right + 1)];
+          }
 
           left--;
           right++;
         }
       }
 
-      return sub;
+      return sub.ToString();
     }
   }
 }
