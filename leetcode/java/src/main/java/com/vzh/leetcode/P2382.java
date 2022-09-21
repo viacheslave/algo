@@ -1,5 +1,8 @@
 package com.vzh.leetcode;
 
+import java.util.PriorityQueue;
+import java.util.TreeMap;
+
 /**
  * Problem: https://leetcode.com/problems/maximum-segment-sum-after-removals/
  * Submission: https://leetcode.com/submissions/detail/781411974/
