@@ -49,3 +49,51 @@ internal class P1155
     }
   }
 }
+/// <summary>
+///    Problem: https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/
+///    Submission: https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/submissions/813405657/
+/// </summary>
+internal class P1155_2
+{
+  public class Solution
+  {
+    public int NumRollsToTarget(int n, int k, int target)
+    {
+      // top-down DP
+
+      var memo = new int[n + 1, target + 1];
+
+      for (int i = 0; i <= n; i++)
+        for (int j = 0; j <= target; j++)
+          memo[i, j] = -1;
+
+      return Calculate(memo, n, k, target);
+    }
+
+    private int Calculate(int[,] memo, int n, int k, int target)
+    {
+      if (memo[n, target] != -1)
+        return memo[n, target];
+
+      if (n == 1)
+      {
+        memo[n, target] = 1 <= target && target <= k ? 1 : 0;
+        return memo[n, target];
+      }
+
+      var sum = 0;
+      for (int roll = 1; roll <= k; roll++)
+      {
+        if (target - roll >= 1)
+        {
+          var res = Calculate(memo, n - 1, k, target - roll);
+          sum += res;
+          sum %= 1_000_000_007;
+        }
+      }
+
+      memo[n, target] = sum;
+      return sum;
+    }
+  }
+}
