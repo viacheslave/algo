@@ -41,3 +41,31 @@ internal class P1047
     }
   }
 }
+
+/// <summary>
+///    Problem: https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+///    Submission: https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/submissions/840950244/
+/// </summary>
+internal class P1047_2
+{
+  public class Solution
+  {
+    public string RemoveDuplicates(string S)
+    {
+      var stack = new Stack<char>();
+
+      foreach (var ch in S)
+      {
+        if (stack.Count == 0 || stack.Peek() != ch)
+        {
+          stack.Push(ch);
+          continue;
+        }
+
+        stack.Pop();
+      }
+
+      return string.Join("", stack.Reverse().ToArray());
+    }
+  }
+}
