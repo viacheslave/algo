@@ -4,7 +4,7 @@ namespace LeetCode.Naive.Problems;
 ///    Problem: https://leetcode.com/problems/smallest-value-after-replacing-with-sum-of-prime-factors/
 ///    Submission: https://leetcode.com/problems/smallest-value-after-replacing-with-sum-of-prime-factors/submissions/862038190/
 /// </summary>
-internal class P2508
+internal class P2507
 {
   public class Solution
   {
