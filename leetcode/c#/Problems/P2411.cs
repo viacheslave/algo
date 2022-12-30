@@ -52,6 +52,4 @@ internal class P2411
       return ans;
     }
   }
-  Console
-
 }
