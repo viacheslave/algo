@@ -1,4 +1,4 @@
-﻿namespace LeetCode.Naive.Problems;
+namespace LeetCode.Naive.Problems;
 
 /// <summary>
 ///    Problem: https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/
@@ -13,7 +13,7 @@ internal class P2492
       var adj = GetAdjList(roads, 1, n);
 
       var visited = new HashSet<int>();
-      visited.Add(n);
+      //visited.Add(n);
 
       var min = int.MaxValue;
 
